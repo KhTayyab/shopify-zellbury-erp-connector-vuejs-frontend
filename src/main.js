@@ -22,7 +22,7 @@ window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 Vue.prototype.$API_TOKEN = "Token%2044e9eadf347b30274bc5520a896abcef64b23aeb";
 Vue.prototype.$shop = "junaid-jamshed-new-testing.myshopify.com";
 Vue.prototype.$plan_name = "Free";
-Vue.prototype.$sale_module = true;
+Vue.prototype.$sale_module = false;
 Vue.prototype.$backendURL = "http://localhost:8000"
 
 Vue.prototype.$Axios = Axios

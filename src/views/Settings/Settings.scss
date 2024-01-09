@@ -40,3 +40,19 @@
     align-items: center;
   }
 }
+
+.custom-table {
+  width: 100%;
+  border: 1px solid;
+  border-collapse: collapse;
+  th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+  }
+}
+
+.custom-table-form {
+  text-align: center !important;
+  margin-left: 3% !important;
+  margin-right: 3% !important;
+}

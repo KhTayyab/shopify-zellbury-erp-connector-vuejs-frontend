@@ -5,29 +5,50 @@
             <!-- Expension Panel -->
             <!-- POS Integration -->
             <v-row>
-                <v-col cols="12" sm="8">
+                <v-col cols="12" sm="12">
                     <v-card tile elevation="2" class="mt-3 inventory_sync">
                         <v-card-title>
-                            Inventory Sync
+                            <v-row>
+                                <v-col cols="12" sm="2">
+                                    Location Setup
+                                </v-col>
+                                <v-col cols="12" sm="10">
+                                    <v-card-actions>
+                                        <v-btn color="primary" depressed @click="pushItemInLocationDetails()">+ Add Row</v-btn>    
+                                    </v-card-actions>
+                                </v-col>
+                            </v-row>
                         </v-card-title>
-                        <v-progress-linear :active="inventory_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
-                        <div v-if="inventory_loading == false">
-                            <v-card-text>
-                                <v-select v-model="inventory_settings.location_id" :items="locations" :item-text="'name'" :item-value="'id'" label="Select Inventory Location"></v-select>
-                                <!-- <div class="deep-purple--text" v-if="inventory_settings.last_sync !== undefined">Last Synced <b class="teal--text"> <i>Date: </i>{{ inventory_settings.last_sync.getDate() +'-' + (inventory_settings.last_sync.getMonth()+1) + '-'+ inventory_settings.last_sync.getFullYear() }} <span class="indigo--text"> <i>Time: </i> {{ inventory_settings.last_sync.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) }}</span></b></div> -->
-                                <v-card-actions>
-                                <v-btn color="primary" depressed @click="saveInventorySettings()">Save & Update</v-btn>
+                        <v-card-text>
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Gtech Location</th>
+                                        <th class="text-center">Shopify Location</th>
+                                        <th class="text-center">Inventory Threshold</th>
+                                        <th class="text-center">Integration Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in location_details" :key="item.id">
+                                        <td class="text-center">
+                                            <v-text-field class="custom-table-form" v-model="item.gtech_location" label="Gtech Location"></v-text-field>
+                                        </td>
+                                        <td class="text-center">
+                                            <v-select class="custom-table-form" v-model="item.shopify_location" :items="locations" :item-text="'name'" :item-value="'id'" label="Shopify Location"></v-select>
+                                        </td>
+                                        <td class="text-center">
+                                            <v-text-field class="custom-table-form" v-model="item.inv_percentage" label="Inventory Threshold Percentage"></v-text-field>
+                                        </td>
+                                        <td class="text-center">
+                                            <v-checkbox class="custom-table-form" v-model="item.is_active" label="Status"></v-checkbox>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <v-card-actions style="margin-top: 2%;">
+                                <v-btn color="primary" depressed @click="saveLocations()">Save & Update</v-btn>
                             </v-card-actions>
-                            </v-card-text>
-                        </div>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" sm="4" style="margin-top: 0.75%;">
-                    <v-card class="order-verification" tile elevation="2">
-                        <v-card-text class="text--primary">
-                            <div class="teal--text"><b>Note:</b> Order Posted on Creation or Fulfillment </div>
-                            <div class="deep-purple--text"><b>Note:</b> If cancellation allowed system will call pos cancel order API if order cancalled without CN</div>
-                            <div class="blue-grey--text"><b>Note:</b> If cancellation allowed system will call pos return order API if order cancalled with CN</div>
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -274,16 +295,7 @@
                             </template>
                             <span>Sync Price</span>
                         </v-tooltip>
-
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-icon small class="mr-2" @click="combineSync(item)" v-bind="attrs" v-on="on">
-                                    mdi-sync-alert
-                                </v-icon>
-                            </template>
-                            <span>Sync Both (Inventory and Price)</span>
-                        </v-tooltip>
-
+                        
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-icon small @click="deleteItem(item)" v-bind="attrs" v-on="on">

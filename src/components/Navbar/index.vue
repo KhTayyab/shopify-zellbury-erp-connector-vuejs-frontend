@@ -16,9 +16,9 @@
       <li>
         <router-link to="/transaction-logs" exact-active-class="active">Transaction Logs</router-link>
       </li>
-      <li>
+      <!-- <li>
         <router-link to="/sale-logs" exact-active-class="active">Sale Logs</router-link>
-      </li>
+      </li> -->
       <li>
         <router-link to="/settings" exact-active-class="active">Setting</router-link>
       </li>

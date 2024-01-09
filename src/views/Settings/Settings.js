@@ -15,6 +15,7 @@ export default {
 			sale_module: false,
 			triggers: [],
 			pos_list: [],
+			location_details: [],
 			pos_integration: {},
 			delete_pos_integration: {},
 			delete_dialog: false,
@@ -22,15 +23,6 @@ export default {
 			pos_integration_loading: false,
 			pos_loading: false,
 			sale_loading: false,
-			inventory_loading: false,
-			inventory_settings: {
-				use_hold_qty: false,
-				schedule_sync: false,
-				schedule_day: "Daily",
-				schedule_time: "00:00",
-				location_id: "",
-				restrict_tag: ""
-			},
 			openedPanel: [],
 			order_creation_option: {},
 			fulfillment_creation_option: {},
@@ -124,7 +116,6 @@ export default {
 			this.getOrderCreationOption()
 			this.getFulfillmentCreationOption()
 			this.getOrderCancellationOption()
-			this.getInventorySettings()
 			this.initializeArrayData()
 			this.getShopLocations()
 			this.initializeSaleModule()
@@ -157,6 +148,27 @@ export default {
 			this.triggers = [
 				'Order Creation',
 				'Fulfillment Creation'
+			]
+			this.location_details = [
+				{
+					id: null,
+					gtech_location: "",
+					shopify_location: "",
+					inv_percentage: "",
+					is_active: false,
+				}, {
+					id: null,
+					gtech_location: "",
+					shopify_location: "",
+					inv_percentage: "",
+					is_active: false,
+				}, {
+					id: null,
+					gtech_location: "",
+					shopify_location: "",
+					inv_percentage: "",
+					is_active: false,
+				}
 			]
 		},
 
@@ -449,18 +461,15 @@ export default {
 
 		//Get Shop Locations
 		getShopLocations() {
-			this.inventory_loading = true;
 			this.$Axios.get(this.$backendURL + "/locations?shop=" + this.$shop, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
 				}
 			}).then((response) => {
 				this.locations = response.data.locations;
-				this.inventory_loading = false;
 			}, (error) => {
 				console.log(error);
 				this.snackbar = true;
-				this.inventory_loading = false;
 				this.snackbar_text = error.response.data.detail;
 				if (error.response.data.detail == "Session expired, Reopen the application!") {
 					this.$router.push('/error')
@@ -719,88 +728,6 @@ export default {
 			}
 		},
 
-		// Get Inventory Sync Settings
-		getInventorySettings() {
-			this.inventory_loading = true;
-			this.$Axios.get(this.$backendURL + "/erp_integration/inventory_sync?shop=" + this.$shop, {
-				headers: {
-					'Authorization': this.$API_TOKEN.replace('%20', ' ')
-				}
-			}).then((response) => {
-				let temp = response.data
-				temp = {
-					...temp,
-					last_sync: new Date(temp.last_sync)
-				}
-				this.inventory_settings = temp;
-				this.inventory_loading = false;
-			}, (error) => {
-				console.log(error);
-				this.inventory_settings = {};
-				// this.snackbar = true;
-				this.inventory_loading = false;
-				// this.snackbar_text = error.response.data.detail;
-				if (error.response.data.detail == "Session expired, Reopen the application!") {
-					this.$router.push('/error')
-				}
-			});
-		},
-
-		// Update or create Inventory Sync Settings
-		saveInventorySettings() {
-			this.inventory_loading = true;
-			this.$Axios.post(this.$backendURL + "/erp_integration/inventory_sync", {
-				shop: this.$shop,
-				use_hold_qty: this.inventory_settings.use_hold_qty,
-				schedule_sync: this.inventory_settings.schedule_sync,
-				schedule_day: this.inventory_settings.schedule_day,
-				schedule_time: this.inventory_settings.schedule_time,
-				location_id: this.inventory_settings.location_id,
-				restrict_tag: this.inventory_settings.restrict_tag
-			}, {
-				headers: {
-					'Authorization': this.$API_TOKEN.replace('%20', ' ')
-				}
-			}).then((response) => {
-				this.snackbar = true;
-				this.inventory_loading = false;
-				this.snackbar_text = response.data.detail;
-			}, (error) => {
-				console.log(error);
-				this.snackbar_text = error;
-				this.inventory_loading = false;
-				if (error.response.data.detail == "Session expired, Reopen the application!") {
-					this.$router.push('/error')
-				}
-			});
-		},
-
-    // Sync Inventory Now
-		syncInventoryNow() {
-			this.inventory_loading = true;
-			this.$Axios.get(this.$backendURL + "/erp_integration/sync_now?shop=" + this.$shop, {
-				headers: {
-					'Authorization': this.$API_TOKEN.replace('%20', ' ')
-				}
-			}).then((response) => {
-				this.snackbar = true;
-				this.inventory_loading = false;
-				this.snackbar_text = response.data.detail;
-				this.inventory_settings = {
-					...this.inventory_settings,
-					last_sync: new Date(response.data.last_sync)
-				}
-			}, (error) => {
-				console.log(error);
-				this.snackbar = true;
-				this.inventory_loading = false;
-				this.snackbar_text = error.response.data.detail;
-				if (error.response.data.detail == "Session expired, Reopen the application!") {
-					this.$router.push('/error')
-				}
-			});
-		},
-
     // Inventory Sync
 		inventorySync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
@@ -952,6 +879,20 @@ export default {
         this.snackbar = true
       });
     },
+
+
+		// Push New Element to Array
+		pushItemInLocationDetails() {
+			this.location_details.push(
+				{
+					id: null,
+					gtech_location: "",
+					shopify_location: "",
+					inv_percentage: "",
+					is_active: false,
+				}
+			)
+		},
 
 	}
 }

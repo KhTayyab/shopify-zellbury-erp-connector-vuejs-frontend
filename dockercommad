@@ -1,13 +1,13 @@
 
 
 ########## Alche ECW AWS ##########
-git add --all && git commit -m 'force lagecy issue' && git push origin master
+git add --all && git commit -m 'location setup' && git push origin master
 yarn build
-docker build -t shopify-dynamics-junction-frontend .
-docker tag shopify-dynamics-junction-frontend:latest 599938016587.dkr.ecr.us-east-1.amazonaws.com/shopify-dynamics-junction-frontend:latest
+docker build -t shopify-zellbury-erp-connector-frontend .
+docker tag shopify-zellbury-erp-connector-frontend:latest 599938016587.dkr.ecr.us-east-1.amazonaws.com/shopify-zellbury-erp-connector-frontend:latest
 aws ecr get-login-password --region us-east-1 --profile alche_ecw | docker login --username AWS --password-stdin 599938016587.dkr.ecr.us-east-1.amazonaws.com
-docker push 599938016587.dkr.ecr.us-east-1.amazonaws.com/shopify-dynamics-junction-frontend:latest
-aws ecs update-service  --service shopify-dynamics-junction-frontend --cluster shopify-apps-cluster-2 --force-new-deployment --region us-east-1 --profile alche_ecw
+docker push 599938016587.dkr.ecr.us-east-1.amazonaws.com/shopify-zellbury-erp-connector-frontend:latest
+aws ecs update-service  --service shopify-zellbury-erp-connector-frontend --cluster shopify-apps-cluster-2 --force-new-deployment --region us-east-1 --profile alche_ecw
 
-docker run -p 8080:8080 shopify-dynamics-junction-frontend
+docker run -p 8080:8080 shopify-zellbury-erp-connector-frontend
 
