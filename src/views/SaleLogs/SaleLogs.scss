@@ -1,0 +1,26 @@
+.table-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .table-search {
+        min-width: 400px;
+    }
+
+    .table-actions {
+        display: flex;
+
+        > * + * {
+            margin-left: 15px;
+        }
+    }
+}
+.table-filters-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-left: -17%;
+    > * + * {
+        margin-left: 15px;
+    }
+}
