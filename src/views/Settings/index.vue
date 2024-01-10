@@ -19,37 +19,40 @@
                                 </v-col>
                             </v-row>
                         </v-card-title>
-                        <v-card-text>
-                            <table class="custom-table">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Gtech Location</th>
-                                        <th class="text-center">Shopify Location</th>
-                                        <th class="text-center">Inventory Threshold</th>
-                                        <th class="text-center">Integration Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="item in location_details" :key="item.id">
-                                        <td class="text-center">
-                                            <v-text-field class="custom-table-form" v-model="item.gtech_location" label="Gtech Location"></v-text-field>
-                                        </td>
-                                        <td class="text-center">
-                                            <v-select class="custom-table-form" v-model="item.shopify_location" :items="locations" :item-text="'name'" :item-value="'id'" label="Shopify Location"></v-select>
-                                        </td>
-                                        <td class="text-center">
-                                            <v-text-field class="custom-table-form" v-model="item.inv_percentage" label="Inventory Threshold Percentage"></v-text-field>
-                                        </td>
-                                        <td class="text-center">
-                                            <v-checkbox class="custom-table-form" v-model="item.is_active" label="Status"></v-checkbox>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <v-card-actions style="margin-top: 2%;">
-                                <v-btn color="primary" depressed @click="saveLocations()">Save & Update</v-btn>
-                            </v-card-actions>
-                        </v-card-text>
+                        <v-progress-linear :active="location_detail_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <div v-if="location_detail_loading == false">
+                            <v-card-text>
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center custom-table-col-width">Gtech Location</th>
+                                            <th class="text-center custom-table-col-width">Shopify Location</th>
+                                            <th class="text-center custom-table-col-width">Inventory Threshold</th>
+                                            <th class="text-center custom-table-col-width">Integration Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in location_details" :key="item.id">
+                                            <td class="text-center">
+                                                <v-text-field class="custom-table-form" v-model="item.gtech_location" label="Gtech Location"></v-text-field>
+                                            </td>
+                                            <td class="text-center">
+                                                <v-select class="custom-table-form" v-model="item.shopify_location" :items="locations" :item-text="'name'" :item-value="'id'" label="Shopify Location"></v-select>
+                                            </td>
+                                            <td class="text-center">
+                                                <v-text-field type="number" min=0 max=100 class="custom-table-form" v-model="item.inv_percentage" label="Inventory Threshold Percentage"></v-text-field>
+                                            </td>
+                                            <td class="text-center">
+                                                <v-checkbox class="custom-table-form" v-model="item.is_active" label="Status"></v-checkbox>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <v-card-actions style="margin-top: 2%;">
+                                    <v-btn color="primary" depressed @click="saveLocationDetail()">Save & Update</v-btn>
+                                </v-card-actions>
+                            </v-card-text>
+                        </div>
                     </v-card>
                 </v-col>
             </v-row>

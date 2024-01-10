@@ -14,6 +14,9 @@
         <router-link to="/inventory-sync" exact-active-class="active">Inventory Logs</router-link>
       </li>
       <li>
+        <router-link to="/price-sync" exact-active-class="active">Price Logs</router-link>
+      </li>
+      <li>
         <router-link to="/transaction-logs" exact-active-class="active">Transaction Logs</router-link>
       </li>
       <!-- <li>

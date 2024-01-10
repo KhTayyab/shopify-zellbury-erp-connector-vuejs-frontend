@@ -36,6 +36,10 @@ const routes = [
     name: 'InventorySync',
     component: () => import('../views/InventorySync/index.vue')
   }, {
+    path: '/price-sync',
+    name: 'PriceSync',
+    component: () => import('../views/PriceSync/index.vue')
+  }, {
     path: '/settings',
     name: 'Settings',
     component: () => import('../views/Settings/index.vue')

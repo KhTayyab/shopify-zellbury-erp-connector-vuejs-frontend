@@ -16,6 +16,7 @@ export default {
 			triggers: [],
 			pos_list: [],
 			location_details: [],
+			location_detail_loading: false,
 			pos_integration: {},
 			delete_pos_integration: {},
 			delete_dialog: false,
@@ -121,6 +122,7 @@ export default {
 			this.initializeSaleModule()
 			this.getToken()
 			this.generateAPIDetail()
+			this.getLocationDetail()
 		},
 		
 		initializeSaleModule() {
@@ -148,27 +150,6 @@ export default {
 			this.triggers = [
 				'Order Creation',
 				'Fulfillment Creation'
-			]
-			this.location_details = [
-				{
-					id: null,
-					gtech_location: "",
-					shopify_location: "",
-					inv_percentage: "",
-					is_active: false,
-				}, {
-					id: null,
-					gtech_location: "",
-					shopify_location: "",
-					inv_percentage: "",
-					is_active: false,
-				}, {
-					id: null,
-					gtech_location: "",
-					shopify_location: "",
-					inv_percentage: "",
-					is_active: false,
-				}
 			]
 		},
 
@@ -737,9 +718,10 @@ export default {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
 				}
 			}).then((response) => {
+				console.log(response)
 				this.snackbar = true;
 				this.pos_integration_loading = false;
-				this.snackbar_text = response.data.detail;
+				this.snackbar_text = "Inventory Sync Done";
 			}, (error) => {
 				console.log(error);
 				this.snackbar = true;
@@ -762,7 +744,8 @@ export default {
 			}).then((response) => {
 				this.snackbar = true;
 				this.pos_integration_loading = false;
-				this.snackbar_text = response.data.detail;
+				console.log(response)
+				this.snackbar_text = "Price Sync Done";
 			}, (error) => {
 				console.log(error);
 				this.snackbar = true;
@@ -888,10 +871,55 @@ export default {
 					id: null,
 					gtech_location: "",
 					shopify_location: "",
-					inv_percentage: "",
+					inv_percentage: 0,
 					is_active: false,
 				}
 			)
+		},
+
+		// Generate Location Details
+    getLocationDetail() {
+			this.location_detail_loading = true
+      this.$Axios.get(this.$backendURL + "/erp_integration/location_details?shop=" + this.$shop, {
+        headers: {
+          'Authorization': this.$API_TOKEN.replace('%20', ' ')
+        }
+      }).then((response) => {
+        this.location_details = response.data.location_details;
+				this.location_detail_loading = false
+      }, (error) => {
+        console.log(error);
+				this.location_detail_loading = false
+        this.location_details = []
+        if (error.response.data.detail == "Session expired, Reopen the application!") {
+          this.$router.push('/error')
+        }
+      });
+    },
+
+		// Save & Update Location Details
+		saveLocationDetail() {
+			this.location_detail_loading = true;
+			this.$Axios.post(this.$backendURL + "/erp_integration/location_details?shop=" + this.$shop, {
+				shop: this.$shop,
+				location_details: this.location_details,
+			}, {
+				headers: {
+					'Authorization': this.$API_TOKEN.replace('%20', ' ')
+				}
+			}).then((response) => {
+				console.log(response);
+				this.location_detail_loading = false;
+				this.snackbar = true;
+				this.snackbar_text = "Location Information Saved";
+				this.close()
+				this.getLocationDetail()
+			}, (error) => {
+				console.log(error);
+				this.location_detail_loading = false;
+				this.snackbar = true;
+				this.snackbar_text = error;
+			});
 		},
 
 	}
