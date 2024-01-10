@@ -713,7 +713,7 @@ export default {
 		inventorySync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
 			this.pos_integration_loading = true;
-			this.$Axios.get(this.$backendURL + "/erp_integration/sync_single_integration?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
+			this.$Axios.get(this.$backendURL + "/erp_integration/inv_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
 				}
@@ -737,7 +737,7 @@ export default {
 		priceSync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
 			this.pos_integration_loading = true;
-			this.$Axios.get(this.$backendURL + "/erp_integration/price_sync_single_integration?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
+			this.$Axios.get(this.$backendURL + "/erp_integration/price_only_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
 				}
@@ -757,11 +757,35 @@ export default {
 			});
 		},
 
-		// Combine Sync (Inventory and Price)
-		combineSync(item) {
+		// Compare at Price Sync
+		compareAtPriceSync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
 			this.pos_integration_loading = true;
-			this.$Axios.get(this.$backendURL + "/erp_integration/combine_sync_single_integration?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
+			this.$Axios.get(this.$backendURL + "/erp_integration/compare_price_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
+				headers: {
+					'Authorization': this.$API_TOKEN.replace('%20', ' ')
+				}
+			}).then((response) => {
+				this.snackbar = true;
+				this.pos_integration_loading = false;
+				console.log(response)
+				this.snackbar_text = "Price Sync Done";
+			}, (error) => {
+				console.log(error);
+				this.snackbar = true;
+				this.pos_integration_loading = false;
+				this.snackbar_text = error.response.data.detail;
+				if (error.response.data.detail == "Session expired, Reopen the application!") {
+					this.$router.push('/error')
+				}
+			});
+		},
+
+		// Combine Sync (Price and Compare at Price)
+		combinePriceSync(item) {
+			this.delete_pos_integration = Object.assign({}, item)
+			this.pos_integration_loading = true;
+			this.$Axios.get(this.$backendURL + "/erp_integration/combine_price_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
 				}

@@ -293,10 +293,28 @@
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-icon small class="mr-2" @click="priceSync(item)" v-bind="attrs" v-on="on">
-                                    mdi-sync
+                                    mdi-sync-alert
                                 </v-icon>
                             </template>
                             <span>Sync Price</span>
+                        </v-tooltip>
+
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-icon small class="mr-2" @click="compareAtPriceSync(item)" v-bind="attrs" v-on="on">
+                                    mdi-sync
+                                </v-icon>
+                            </template>
+                            <span>Sync Compare at Price</span>
+                        </v-tooltip>
+
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-icon small class="mr-2" @click="combinePriceSync(item)" v-bind="attrs" v-on="on">
+                                    mdi-cloud-sync
+                                </v-icon>
+                            </template>
+                            <span>Sync Combine Price</span>
                         </v-tooltip>
                         
                         <v-tooltip bottom>
