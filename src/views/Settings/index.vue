@@ -2,8 +2,25 @@
     <div>
         <Navbar />
         <v-main>
-            <!-- Expension Panel -->
-            <!-- POS Integration -->
+            <v-row>
+                <v-col cols="12" sm="8">
+                    <v-card tile elevation="2" class="mt-3 inventory_sync">
+                        <v-card-title>
+                            Price Sync Setting
+                        </v-card-title>
+                        <v-progress-linear :active="price_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <div v-if="price_loading == false">
+                            <v-card-text>
+                                <v-select v-model="price_settings.location_id" :items="locations" :item-text="'name'" :item-value="'id'" label="Select Price Location"></v-select>
+                                <v-text-field class="custom-table-form" v-model="price_settings.tag_in_case_of_zero_value" label="Tag in Case of Discount Price is Zero"></v-text-field>
+                                <v-card-actions>
+                                <v-btn color="primary" depressed @click="savePriceSettings()">Save & Update</v-btn>
+                            </v-card-actions>
+                            </v-card-text>
+                        </div>
+                    </v-card>
+                </v-col>
+            </v-row>
             <v-row>
                 <v-col cols="12" sm="12">
                     <v-card tile elevation="2" class="mt-3 inventory_sync">

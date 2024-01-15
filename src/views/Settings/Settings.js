@@ -12,6 +12,11 @@ export default {
       token_dialog: false,
 			/////////////////// External API Token ///////////////////
 
+			price_loading: false,
+			price_settings: {
+				location_id: "",
+				tag_in_case_of_zero_value: ""
+			},
 			sale_module: false,
 			triggers: [],
 			pos_list: [],
@@ -123,6 +128,7 @@ export default {
 			this.getToken()
 			this.generateAPIDetail()
 			this.getLocationDetail()
+			this.getPriceSettings()
 		},
 		
 		initializeSaleModule() {
@@ -943,6 +949,52 @@ export default {
 				this.location_detail_loading = false;
 				this.snackbar = true;
 				this.snackbar_text = error;
+			});
+		},
+
+		// Get Price Sync Settings
+		getPriceSettings() {
+			this.price_loading = true;
+			this.$Axios.get(this.$backendURL + "/erp_integration/price_sync_setting?shop=" + this.$shop, {
+				headers: {
+					'Authorization': this.$API_TOKEN.replace('%20', ' ')
+				}
+			}).then((response) => {
+				let temp = response.data
+				this.price_settings = temp;
+				this.price_loading = false;
+			}, (error) => {
+				console.log(error);
+				this.price_settings = {};
+				this.price_loading = false;
+				if (error.response.data.detail == "Session expired, Reopen the application!") {
+					this.$router.push('/error')
+				}
+			});
+		},
+
+		// Update or create Price Sync Settings
+		savePriceSettings() {
+			this.price_loading = true;
+			this.$Axios.post(this.$backendURL + "/erp_integration/price_sync_setting", {
+				shop: this.$shop,
+				location_id: this.price_settings.location_id,
+				tag_in_case_of_zero_value: this.price_settings.tag_in_case_of_zero_value
+			}, {
+				headers: {
+					'Authorization': this.$API_TOKEN.replace('%20', ' ')
+				}
+			}).then((response) => {
+				this.snackbar = true;
+				this.price_loading = false;
+				this.snackbar_text = response.data.detail;
+			}, (error) => {
+				console.log(error);
+				this.snackbar_text = error;
+				this.price_loading = false;
+				if (error.response.data.detail == "Session expired, Reopen the application!") {
+					this.$router.push('/error')
+				}
 			});
 		},
 
