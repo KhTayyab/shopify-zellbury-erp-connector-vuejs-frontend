@@ -11,11 +11,11 @@
                         <v-progress-linear :active="price_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
                         <div v-if="price_loading == false">
                             <v-card-text>
-                                <v-select v-model="price_settings.location_id" :items="locations" :item-text="'name'" :item-value="'id'" label="Select Price Location"></v-select>
-                                <v-text-field class="custom-table-form" v-model="price_settings.tag_in_case_of_zero_value" label="Tag in Case of Discount Price is Zero"></v-text-field>
+                                <v-text-field v-model="price_settings.location_id" label="Select Price Location"></v-text-field>
+                                <v-text-field v-model="price_settings.tag_in_case_of_zero_value" label="Tag in Case of Discount Price is Zero"></v-text-field>
                                 <v-card-actions>
-                                <v-btn color="primary" depressed @click="savePriceSettings()">Save & Update</v-btn>
-                            </v-card-actions>
+                                    <v-btn color="primary" depressed @click="savePriceSettings()">Save & Update</v-btn>
+                                </v-card-actions>
                             </v-card-text>
                         </div>
                     </v-card>
@@ -268,6 +268,10 @@
                             <v-text-field v-model="pos_integration.shopify_api_key" label="Shopify API KEY" ></v-text-field>
                             <v-text-field v-model="pos_integration.shopify_api_password" label="Shopify API Password" ></v-text-field>
                             <v-text-field v-model="pos_integration.shopify_api_access_token" label="Shopify Access Token" ></v-text-field>
+                            <v-text-field v-model="pos_integration.inv_time_span" label="Inventory Time Span (In Minutes)" ></v-text-field>
+                            <v-text-field v-model="pos_integration.inv_sync_frequency" label="Inventory Sync Frequency (In Minutes)" ></v-text-field>
+                            <v-text-field v-model="pos_integration.price_time_span" label="Price Time Span (In Minutes)" ></v-text-field>
+                            <v-text-field v-model="pos_integration.price_sync_frequency" label="Price Sync Frequency (In Minutes)" ></v-text-field>
                         </v-card-text>
                         <v-card-actions>
                             <v-btn small depressed class="mr-2" @click="close">Cancel</v-btn>

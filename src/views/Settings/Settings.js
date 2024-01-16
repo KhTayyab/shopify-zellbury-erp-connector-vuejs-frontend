@@ -11,12 +11,6 @@ export default {
       token_loading: false,
       token_dialog: false,
 			/////////////////// External API Token ///////////////////
-
-			price_loading: false,
-			price_settings: {
-				location_id: "",
-				tag_in_case_of_zero_value: ""
-			},
 			sale_module: false,
 			triggers: [],
 			pos_list: [],
@@ -40,10 +34,10 @@ export default {
 			order_cancellation_loading: false,
 			snackbar_text: '',
 			snackbar_timeout: 2000,
-			schedule_day_list: ['Daily'],
-			schedule_time_list: ['9am', '12pm', '3pm', '6pm', '9pm', '12am'],
 			locations: [],
 			modal2: false,
+			price_loading: false,
+			price_settings: {},
 
 			/////////////////// Sale/Price File Related Variables ///////////////////
 			sale_type: 'barcode',
@@ -86,6 +80,10 @@ export default {
 				shopify_api_key: '',
 				shopify_api_password: '',
 				shopify_api_access_token: '',
+				inv_time_span: '0',
+				inv_sync_frequency: '0',
+				price_time_span: '0',
+				price_sync_frequency: '0',
 			},
 			service_pos: ['Gtech'],
 			defaultItem: {
@@ -100,6 +98,10 @@ export default {
 				shopify_api_key: '',
 				shopify_api_password: '',
 				shopify_api_access_token: '',
+				inv_time_span: '0',
+				inv_sync_frequency: '0',
+				price_time_span: '0',
+				price_sync_frequency: '0',
 			}
 		}
 	},
@@ -118,12 +120,12 @@ export default {
 	},
 	methods: {
 		initialize() {
+			this.getShopLocations()	
 			this.getPOSIntegration()
 			this.getOrderCreationOption()
 			this.getFulfillmentCreationOption()
 			this.getOrderCancellationOption()
 			this.initializeArrayData()
-			this.getShopLocations()
 			this.initializeSaleModule()
 			this.getToken()
 			this.generateAPIDetail()
@@ -153,6 +155,10 @@ export default {
     },
 
     initializeArrayData() {
+			this.price_settings = {
+				location_id: "",
+				tag_in_case_of_zero_value: ""
+			}
 			this.triggers = [
 				'Order Creation',
 				'Fulfillment Creation'
@@ -454,6 +460,7 @@ export default {
 				}
 			}).then((response) => {
 				this.locations = response.data.locations;
+				console.log(this.locations)
 			}, (error) => {
 				console.log(error);
 				this.snackbar = true;
@@ -482,6 +489,10 @@ export default {
 					shopify_api_key: this.pos_integration.shopify_api_key,
 					shopify_api_password: this.pos_integration.shopify_api_password,
 					shopify_api_access_token: this.pos_integration.shopify_api_access_token,
+					inv_time_span: this.pos_integration.inv_time_span,
+					inv_sync_frequency: this.pos_integration.inv_sync_frequency,
+					price_time_span: this.pos_integration.price_time_span,
+					price_sync_frequency: this.pos_integration.price_sync_frequency,
 				}, {
 					headers: {
 						'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -515,6 +526,10 @@ export default {
 					shopify_api_key: this.pos_integration.shopify_api_key,
 					shopify_api_password: this.pos_integration.shopify_api_password,
 					shopify_api_access_token: this.pos_integration.shopify_api_access_token,
+					inv_time_span: this.pos_integration.inv_time_span,
+					inv_sync_frequency: this.pos_integration.inv_sync_frequency,
+					price_time_span: this.pos_integration.price_time_span,
+					price_sync_frequency: this.pos_integration.price_sync_frequency,
 				}, {
 					headers: {
 						'Authorization': this.$API_TOKEN.replace('%20', ' ')
