@@ -10,17 +10,17 @@
                 </div>
 
                 <div class="table-actions">
-                    <v-btn small outlined color="primary" @click="showFilters = !showFilters">
+                    <v-btn small outlined color="black" @click="showFilters = !showFilters">
                         <v-icon>mdi-filter-outline</v-icon> Filters
                     </v-btn>
-                    <v-btn small v-on:click="getlogs" color="primary" outlined>
+                    <v-btn small v-on:click="getlogs" color="black" outlined>
                         <v-icon>mdi-refresh</v-icon> Refresh list
                     </v-btn>
 
                     <div class="bulk-actions">
                         <v-menu offset-y>
                             <template v-slot:activator="{ on, attrs }">
-                                <v-btn small color="primary" depressed v-bind="attrs" v-on="on">Download <v-icon>mdi-menu-down</v-icon>
+                                <v-btn small color="black" depressed v-bind="attrs" v-on="on">Download <v-icon>mdi-menu-down</v-icon>
                                 </v-btn>
                             </template>
                             <v-list>

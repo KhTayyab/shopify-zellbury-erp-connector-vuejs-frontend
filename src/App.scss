@@ -3,9 +3,25 @@ html {
   }
   .v-main {
     padding: 60px 20px 90px !important;
+    background-color: #f1f1f1;
   }
   .cl-primary {
     color: #2c4699;
+  }
+  .theme--light.v-card {
+    background-color: #f1f1f1 !important;
+  }
+  .theme--light.v-list {
+    background-color: #f1f1f1 !important;
+  }
+  .theme--light.v-expansion-panels .v-expansion-panel {
+    background-color: #f1f1f1 !important;
+  }
+  .theme--light.v-data-table {
+    background-color: #f1f1f1 !important;
+  }
+  .v-btn:not(.v-btn--outlined).black {
+    color: white;
   }
   .v-card {
     .v-card__title {
@@ -14,6 +30,11 @@ html {
       font-weight: 400;
       font-size: 15px;
     }
+  }
+  .shopify-color {
+    background-color: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    color: white !important;
   }
   .table-wrapper {
     &.no-pagination {

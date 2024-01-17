@@ -9,10 +9,10 @@
                 </div>
 
                 <div class="table-actions">
-                    <v-btn small outlined color="primary" @click="showFilters = !showFilters">
+                    <v-btn small outlined color="black" @click="showFilters = !showFilters">
                         <v-icon>mdi-filter-outline</v-icon> Filters
                     </v-btn>
-                    <v-btn small v-on:click="getlogs" color="primary" outlined>
+                    <v-btn small v-on:click="getlogs" color="black" outlined>
                         <v-icon>mdi-refresh</v-icon> Refresh list
                     </v-btn>
                 </div>

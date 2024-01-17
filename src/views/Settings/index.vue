@@ -8,13 +8,13 @@
                         <v-card-title>
                             Price Sync Setting
                         </v-card-title>
-                        <v-progress-linear :active="price_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <v-progress-linear :active="price_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <div v-if="price_loading == false">
                             <v-card-text>
                                 <v-text-field v-model="price_settings.location_id" label="Select Price Location"></v-text-field>
                                 <v-text-field v-model="price_settings.tag_in_case_of_zero_value" label="Tag in Case of Discount Price is Zero"></v-text-field>
                                 <v-card-actions>
-                                    <v-btn color="primary" depressed @click="savePriceSettings()">Save & Update</v-btn>
+                                    <v-btn color="black" depressed @click="savePriceSettings()">Save & Update</v-btn>
                                 </v-card-actions>
                             </v-card-text>
                         </div>
@@ -31,12 +31,12 @@
                                 </v-col>
                                 <v-col cols="12" sm="10">
                                     <v-card-actions>
-                                        <v-btn color="primary" depressed @click="pushItemInLocationDetails()">+ Add Row</v-btn>    
+                                        <v-btn color="black" depressed @click="pushItemInLocationDetails()">+ Add Row</v-btn>    
                                     </v-card-actions>
                                 </v-col>
                             </v-row>
                         </v-card-title>
-                        <v-progress-linear :active="location_detail_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <v-progress-linear :active="location_detail_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <div v-if="location_detail_loading == false">
                             <v-card-text>
                                 <table class="custom-table">
@@ -66,7 +66,7 @@
                                     </tbody>
                                 </table>
                                 <v-card-actions style="margin-top: 2%;">
-                                    <v-btn color="primary" depressed @click="saveLocationDetail()">Save & Update</v-btn>
+                                    <v-btn color="black" depressed @click="saveLocationDetail()">Save & Update</v-btn>
                                 </v-card-actions>
                             </v-card-text>
                         </div>
@@ -79,80 +79,25 @@
                         <v-card-title>
                             Product Creation API Information
                         </v-card-title>
-                        <v-progress-linear :active="token_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <v-progress-linear :active="token_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <div v-if="token_loading == false">
                             <v-card-text>
-                                <v-card-text class="text--primary">
+                                <v-card-text class="text--black">
                                     <div class="teal--text"><b>API KEY:</b> {{api_token.custom_api_token}}</div>
                                     <div class="red--text"><b>Note:</b> If token re-generated and update token on integration side</div>
                                     <div class="indigo--text"><b>Note:</b> If Call Status in Response is 1 then Order marked as Verified</div>
                                 </v-card-text>
-                                <v-card-text class="text--primary">
+                                <v-card-text class="text--black">
                                     <div class="teal--text"><b>End Point:</b> {{api_details.url}}</div>
                                     <div class="indigo--text"><b>Header:</b> X-Access-Token: {{api_token.custom_api_token}}</div>
                                     <div class="red--text"><b>Body:</b> {{api_details.body}}</div>
                                 </v-card-text>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn color="primary" depressed @click="openTokenDialog()">Generate API Token</v-btn>
+                                <v-btn color="black" depressed @click="openTokenDialog()">Generate API Token</v-btn>
                             </v-card-actions>
                         </div>
                     </v-card>
-                </v-col>
-            </v-row>
-            <v-row v-if="sale_module == true">
-                <v-col cols="12" sm="8">
-                    <template>
-                        <v-card tile elevation="2" class="mt-3 inventory_sync">
-                            <v-card-title>
-                                Apply and Remove Sale
-                            </v-card-title>
-                            <v-progress-linear :active="sale_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
-                            <div v-if="sale_loading == false">
-                                <v-card-text>
-                                    <v-radio-group v-model="sale_type">
-                                        <v-radio label="Barcode" value="barcode" color="#125443"></v-radio>
-                                        <v-radio label="SKU" value="sku" color="#125443"></v-radio>
-                                    </v-radio-group>
-                                    <v-text-field v-model="sale_tag" label="Sale tag like 'Sale 2022'"></v-text-field>
-                                    <v-file-input label="Select file" @change="handleFileUpload" color="#000"></v-file-input>
-                                    <div class="mt-3">
-                                        <p class="mb-1">Selected file: {{ fileName }}</p>
-                                    </div>
-                                    <div>
-                                        <p style="color: red;"> Kindly see the data format by downloading the sample file, otherwise sale script will not work properly. </p>
-                                    </div>
-                                    <v-card-actions>
-                                        <v-btn color="primary" depressed @click="fileUploadWithSaleProcess('apply_sale')">Upload file & Apply Sale</v-btn>
-                                        <v-btn color="primary" depressed @click="fileUploadWithSaleProcess('remove_sale')">Upload file & Remove Sale</v-btn>
-                                    </v-card-actions>
-                                </v-card-text>
-                            </div>
-                        </v-card>
-                    </template>
-                </v-col>
-                <v-col cols="12" sm="4" style="margin-top: 0.75%;">
-                    <template>
-                        <v-card class="order-verification" tile elevation="2">
-                            <v-card-title>Apply/Remove Sale File Sample</v-card-title>
-                            <v-card-text>
-                            <div>
-                                <p style="color: red;"> Follow sample csv to upload sale data. Press the download button to see the format of sale file. </p>
-                            </div>
-                            <div>
-                                <h3>Apply Sale Sample File</h3>
-                                <v-btn class="mt-3" color="primary" @click="downloadSampleBarcodeFile('apply_sale')">Barcode Sample File</v-btn>
-                                <v-btn class="mt-3 ml-3" color="primary" @click="downloadSampleSKUfile('apply_sale')">SKU Sample File</v-btn>
-                            </div>
-                            <br/>
-                            <div>
-                                <h3>Remove Sale Sample File</h3>
-                                <v-btn class="mt-3" color="primary" @click="downloadSampleBarcodeFile('remove_sale')">Barcode Sample File</v-btn>
-                                <v-btn class="mt-3 ml-3" color="primary" @click="downloadSampleSKUfile('remove_sale')">SKU Sample File</v-btn>
-                            </div>
-                            </v-card-text>
-                        </v-card>`
-                    </template>
                 </v-col>
             </v-row>
             <!-- Expension Panel -->
@@ -162,7 +107,7 @@
                     <!-- Order Posting -->
                     <v-expansion-panel>
                         <v-expansion-panel-header>Order Posting</v-expansion-panel-header>
-                        <v-progress-linear :active="order_creation_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <v-progress-linear :active="order_creation_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <v-expansion-panel-content v-if="order_creation_loading == false">
                             <v-form ref="form">
                                 <v-row>
@@ -178,7 +123,7 @@
 
                                 <div class="text-right">
                                     <v-btn small depressed class="mr-4" @click="closePanel(0)">Cancel</v-btn>
-                                    <v-btn small color="primary" depressed @click="saveOrderCreationOption()">Save</v-btn>
+                                    <v-btn small color="black" depressed @click="saveOrderCreationOption()">Save</v-btn>
                                 </div>
                             </v-form>
                         </v-expansion-panel-content>
@@ -186,7 +131,7 @@
                     <!-- CN Generation -->
                     <v-expansion-panel>
                         <v-expansion-panel-header>CN Generation (if order posting event is on order creation than it will work)</v-expansion-panel-header>
-                        <v-progress-linear :active="fulfillment_creation_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <v-progress-linear :active="fulfillment_creation_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <v-expansion-panel-content v-if="fulfillment_creation_loading == false">
                             <v-form ref="form">
                                 <v-row>
@@ -200,7 +145,7 @@
                                 </v-row>
                                 <div class="text-right">
                                     <v-btn small depressed class="mr-4" @click="closePanel(0)">Cancel</v-btn>
-                                    <v-btn small color="primary" depressed @click="saveOrderFulfilmentOption()">Save</v-btn>
+                                    <v-btn small color="black" depressed @click="saveOrderFulfilmentOption()">Save</v-btn>
                                 </div>
                             </v-form>
                         </v-expansion-panel-content>
@@ -208,7 +153,7 @@
                     <!-- Order Cancellation -->
                     <v-expansion-panel>
                         <v-expansion-panel-header>Order Cancellation</v-expansion-panel-header>
-                        <v-progress-linear :active="order_cancellation_loading" color="primary accent-4" indeterminate rounded></v-progress-linear>
+                        <v-progress-linear :active="order_cancellation_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <v-expansion-panel-content v-if="order_cancellation_loading == false">
                             <v-form ref="form">
                                 <v-row>
@@ -222,7 +167,7 @@
                                 </v-row>
                                 <div class="text-right">
                                     <v-btn small depressed class="mr-4" @click="closePanel(0)">Cancel</v-btn>
-                                    <v-btn small color="primary" depressed @click="saveOrderCancellationOption()">Save</v-btn>
+                                    <v-btn small color="black" depressed @click="saveOrderCancellationOption()">Save</v-btn>
                                 </div>
                             </v-form>
                         </v-expansion-panel-content>
@@ -233,12 +178,12 @@
             <!-- Integration Dialog -->
             <v-dialog v-model="dialog" max-width="600px">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn small color="primary" depressed class="mb-2 mt-8" v-bind="attrs" v-on="on">+ Add Integration</v-btn>
+                    <v-btn small color="black" depressed class="mb-2 mt-8" v-bind="attrs" v-on="on">+ Add Integration</v-btn>
                 </template>
                 <v-card>
                     <v-card-title>{{ formTitle }}</v-card-title>
                     <v-card-text v-if="pos_integration_loading == true">
-                        <v-progress-circular indeterminate color="primary" style="margin-left: 44%;"></v-progress-circular>
+                        <v-progress-circular indeterminate color="black" style="margin-left: 44%;"></v-progress-circular>
                     </v-card-text>
                     <div v-if="pos_integration_loading == false">
                         <v-card-text>
@@ -256,7 +201,7 @@
                                 </v-radio>
                                 <v-radio value="Barcode">
                                     <template v-slot:label>
-                                        <div><strong class="primary--text">Barcode</strong></div>
+                                        <div><strong class="black--text">Barcode</strong></div>
                                     </template>
                                 </v-radio>
                             </v-radio-group>
@@ -275,7 +220,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-btn small depressed class="mr-2" @click="close">Cancel</v-btn>
-                            <v-btn small color="primary" depressed @click="savepos()">Save</v-btn>
+                            <v-btn small color="black" depressed @click="savepos()">Save</v-btn>
                         </v-card-actions>
                     </div>
                 </v-card>
@@ -348,7 +293,7 @@
                         </v-tooltip>
                     </template>
                     <template v-slot:no-data>
-                        <v-btn color="primary" @click="initialize">Reset</v-btn>
+                        <v-btn color="black" @click="initialize">Reset</v-btn>
                     </template>
                 </v-data-table>
             </v-card>
@@ -359,7 +304,7 @@
                     <v-card-text>Are you sure you want to delete shop no {{delete_pos_integration.app_shop}} from integration?</v-card-text>
                     <v-card-actions>
                         <v-btn small depressed class="mr-2" @click="closeDeleteDialog()">Cancel</v-btn>
-                        <v-btn small color="primary" depressed @click="deleteIntegration()">Delete</v-btn>
+                        <v-btn small color="black" depressed @click="deleteIntegration()">Delete</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -370,7 +315,7 @@
                     <v-card-text>Are you sure you want to generate api token?</v-card-text>
                     <v-card-actions>
                         <v-btn small depressed class="mr-2" @click="closeTokenDialog()">Cancel</v-btn>
-                        <v-btn small color="primary" depressed @click="generateAPIToken()">Generate Token</v-btn>
+                        <v-btn small color="black" depressed @click="generateAPIToken()">Generate Token</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>

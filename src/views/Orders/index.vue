@@ -8,10 +8,10 @@
                     <v-text-field label="Search" @input="search" prepend-inner-icon="mdi-magnify"></v-text-field>
                 </div>
                 <div class="table-actions">
-                    <v-btn small outlined color="primary" @click="showFilters = !showFilters">
+                    <v-btn small outlined color="black" @click="showFilters = !showFilters">
                         <v-icon>mdi-filter-outline</v-icon> Filters
                     </v-btn>
-                    <v-btn small v-on:click="getorders" color="primary" outlined>
+                    <v-btn small v-on:click="getorders" color="black" outlined>
                         <v-icon>mdi-refresh</v-icon> Refresh list
                     </v-btn>
                     <!--
@@ -56,6 +56,9 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="orders" disable-pagination disable-sort :items-per-page="itemsPerPage" item-key="id" class="elevation-1">
+                <template v-slot:loading>
+                    <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+                </template>
                 <template v-slot:item.status="{ item }">
                     <v-chip :color="getColor(item.status)" label v-if="item.status">{{ item.status }}</v-chip>
                     <span v-else>-</span>
@@ -105,7 +108,7 @@
         <v-card>
             <v-card-title> Fix Phone Number </v-card-title>
             <v-card-text v-if="phone_number_loading == true">
-                <v-progress-circular indeterminate color="primary" style="margin-left: 44%;"></v-progress-circular>
+                <v-progress-circular indeterminate color="black" style="margin-left: 44%;"></v-progress-circular>
             </v-card-text>
             <div v-if="phone_number_loading == false">
                 <v-card-text>
@@ -113,7 +116,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-btn depressed @click="closePhoneDialog()">Cancel</v-btn>
-                    <v-btn color="primary" depressed @click="updateOrderPhone()">Update</v-btn>
+                    <v-btn color="black" depressed @click="updateOrderPhone()">Update</v-btn>
                 </v-card-actions>
             </div>
         </v-card>

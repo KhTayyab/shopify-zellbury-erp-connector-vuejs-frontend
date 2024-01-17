@@ -14,7 +14,7 @@ export default {
       search: '',
       provider_filter: null,
       showFilters: false,
-      loading_data: true,
+      loading_data: 'black',
       order_logs: [],
       itemsPerPage: 10,
       selected: [],
@@ -66,7 +66,7 @@ export default {
     
     // Get Logs
     getlogs() {
-      this.loading_data = true;
+      this.loading_data = 'black';
       this.$Axios.get(this.$backendURL + "/erp_integration/order_queue?shop=" + this.$shop + "&start_date=" + this.start_date + "&end_date=" + this.end_date, {
         headers: {
           'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -130,7 +130,7 @@ export default {
 
     // Repost Order
     repostItem(item) {
-      this.loading_data = true;
+      this.loading_data = 'black';
       this.$Axios.post(this.$backendURL + "/erp_integration/repost_order?shop=" + this.$shop, {
           shop: this.$shop,
           id: item.id

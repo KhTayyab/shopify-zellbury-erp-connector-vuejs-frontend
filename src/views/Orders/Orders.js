@@ -17,7 +17,7 @@ export default {
       limit_filter: 50,
       showFilters: false,
       searchDebounce: null,
-      loading_data: true,
+      loading_data: 'black',
       orders: [],
       next_page_url: '',
       previous_page_url: '',
@@ -130,7 +130,7 @@ export default {
     getorders() {
       this.payment_filter = null
       this.fulfillment_filter = null
-      this.loading_data = true;
+      this.loading_data = 'black';
       this.$Axios.get(this.$backendURL + "/orders?shop=" + this.$shop + "&limit=" + this.limit_filter + "&financial_status=" + this.payment_filter + "&fulfillment_status=" + this.fulfillment_filter + "&region_filter=null", {
         headers: {
           'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -152,7 +152,7 @@ export default {
     // Get Next Page Orders
     getNextPageOrders() {
       if (this.next_page_url !== false) {
-        this.loading_data = true;
+        this.loading_data = 'black';
         this.$Axios.get(this.$backendURL + "/orders?shop=" + this.$shop + "&page_info=" + this.next_page_url[1] + "&page_url=" + this.next_page_url[0] + "&limit=" + this.limit_filter + "&financial_status=" + this.payment_filter + "&fulfillment_status=" + this.fulfillment_filter + "&region_filter=null", {
           headers: {
             'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -177,7 +177,7 @@ export default {
     // Get Previous Page Orders
     getPreviousPageOrders() {
       if (this.previous_page_url !== false) {
-        this.loading_data = true;
+        this.loading_data = 'black';
         this.$Axios.get(this.$backendURL + "/orders?shop=" + this.$shop + "&page_info=" + this.previous_page_url[1] + "&page_url=" + this.previous_page_url[0] + "&limit=" + this.limit_filter + "&financial_status=" + this.payment_filter + "&fulfillment_status=" + this.fulfillment_filter + "&region_filter=null", {
           headers: {
             'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -215,7 +215,7 @@ export default {
         this.itemsPerPage = selected_filter;
       }
       
-      this.loading_data = true;
+      this.loading_data = 'black';
       // eslint-disable-next-line
       // debugger;
       this.$Axios.get(this.$backendURL + "/orders?shop=" + this.$shop + "&limit=" + this.limit_filter + "&financial_status=" + this.payment_filter + "&fulfillment_status=" + this.fulfillment_filter + "&region_filter=null", {
@@ -238,7 +238,7 @@ export default {
 		searchOrder(search_value) {
 			this.payment_filter = null
 			this.fulfillment_filter = null
-			this.loading_data = true;
+			this.loading_data = 'black';
 			this.$Axios.post(this.$backendURL + "/search_orders?shop=" + this.$shop + "&limit=" + this.limit_filter + "&financial_status=" + this.payment_filter + "&fulfillment_status=" + this.fulfillment_filter + "&region_filter=null", {
 					search_value: search_value
 				},{

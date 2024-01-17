@@ -13,7 +13,7 @@ export default {
     return {
       search: '',
       showFilters: false,
-      loading_data: true,
+      loading_data: 'black',
       logs: [],
       itemsPerPage: 10,
       selected: [],
@@ -67,7 +67,7 @@ export default {
     
     // Get Logs
     getlogs() {
-      this.loading_data = true;
+      this.loading_data = 'black';
       this.$Axios.get(this.$backendURL + "/erp_integration/logs?shop=" + this.$shop + "&start_date=" + this.start_date + "&end_date=" + this.end_date, {
         headers: {
           'Authorization': this.$API_TOKEN.replace('%20', ' ')

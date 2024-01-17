@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar id="navbar" color="indigo darken-2" dense>
+  <v-app-bar id="navbar" color="indigo black-2" dense>
     <ul>
       <li>
         <router-link to="/" exact-active-class="active">Orders</router-link>
