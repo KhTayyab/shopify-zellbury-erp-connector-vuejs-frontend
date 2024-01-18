@@ -60,7 +60,7 @@
                                                 <v-text-field type="number" min=0 max=100 class="custom-table-form" v-model="item.inv_percentage" label="Inventory Threshold Percentage"></v-text-field>
                                             </td>
                                             <td class="text-center">
-                                                <v-checkbox class="custom-table-form" v-model="item.is_active" label="Status"></v-checkbox>
+                                                <v-checkbox color="black" class="custom-table-form" v-model="item.is_active" label="Status"></v-checkbox>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -112,12 +112,12 @@
                             <v-form ref="form">
                                 <v-row>
                                     <v-col sm="6">
-                                        <v-switch v-model="order_creation_option.order_creation" label="Enable"></v-switch>
+                                        <v-switch color="black" v-model="order_creation_option.order_creation" label="Enable"></v-switch>
                                         <v-select :items="triggers" v-model="order_creation_option.event_trigger" name="event_trigger" item-text="event_trigger" label="Event Trigger" />
                                     </v-col>
                                     <v-col sm="6">
                                         <v-text-field v-model="order_creation_option.shopify_tag" label="Add Tag"></v-text-field>
-                                        <v-switch v-model="order_creation_option.append_tag" label="Append Tag"></v-switch>
+                                        <v-switch color="black" v-model="order_creation_option.append_tag" label="Append Tag"></v-switch>
                                     </v-col>
                                 </v-row>
 
@@ -136,11 +136,11 @@
                             <v-form ref="form">
                                 <v-row>
                                     <v-col sm="6">
-                                        <v-switch v-model="fulfillment_creation_option.fulfillment_creation" label="Enable"></v-switch>
+                                        <v-switch color="black" v-model="fulfillment_creation_option.fulfillment_creation" label="Enable"></v-switch>
                                     </v-col>
                                     <v-col sm="6">
                                         <v-text-field v-model="fulfillment_creation_option.shopify_tag" label="Add Tag"></v-text-field>
-                                        <v-switch v-model="fulfillment_creation_option.append_tag" label="Append Tag"></v-switch>
+                                        <v-switch color="black" v-model="fulfillment_creation_option.append_tag" label="Append Tag"></v-switch>
                                     </v-col>
                                 </v-row>
                                 <div class="text-right">
@@ -158,11 +158,11 @@
                             <v-form ref="form">
                                 <v-row>
                                     <v-col sm="6">
-                                        <v-switch v-model="order_cancellation_option.order_cancellation" label="Enable"></v-switch>
+                                        <v-switch color="black" v-model="order_cancellation_option.order_cancellation" label="Enable"></v-switch>
                                     </v-col>
                                     <v-col sm="6">
                                         <v-text-field v-model="order_cancellation_option.shopify_tag" label="Add Tag"></v-text-field>
-                                        <v-switch v-model="order_cancellation_option.append_tag" label="Append Tag"></v-switch>
+                                        <v-switch color="black" v-model="order_cancellation_option.append_tag" label="Append Tag"></v-switch>
                                     </v-col>
                                 </v-row>
                                 <div class="text-right">
@@ -194,22 +194,22 @@
                                 <template v-slot:label>
                                     <div>Your Store <strong>Unique Identifier</strong></div>
                                 </template>
-                                <v-radio value="SKU">
+                                <v-radio color="black" value="SKU">
                                     <template v-slot:label>
                                         <div><strong class="success--text">SKU</strong></div>
                                     </template>
                                 </v-radio>
-                                <v-radio value="Barcode">
+                                <v-radio color="black" value="Barcode">
                                     <template v-slot:label>
                                         <div><strong class="black--text">Barcode</strong></div>
                                     </template>
                                 </v-radio>
                             </v-radio-group>
-                            <v-checkbox v-model="pos_integration.enable_inv_sync" :label="`Enable Inventory Sync`"></v-checkbox>
-                            <v-checkbox v-model="pos_integration.enable_price_sync" :label="`Enable Price Sync`"></v-checkbox>
-                            <v-checkbox v-model="pos_integration.enable_order_posting" :label="`Enable Order Posting`"></v-checkbox>
-                            <v-checkbox v-model="pos_integration.schedule_inv_sync" :label="`Auto Inventory Schedule`"></v-checkbox>
-                            <v-checkbox v-model="pos_integration.schedule_price_sync" :label="`Auto Price Schedule`"></v-checkbox>
+                            <v-checkbox color="black" v-model="pos_integration.enable_inv_sync" :label="`Enable Inventory Sync`"></v-checkbox>
+                            <v-checkbox color="black" v-model="pos_integration.enable_price_sync" :label="`Enable Price Sync`"></v-checkbox>
+                            <v-checkbox color="black" v-model="pos_integration.enable_order_posting" :label="`Enable Order Posting`"></v-checkbox>
+                            <v-checkbox color="black" v-model="pos_integration.schedule_inv_sync" :label="`Auto Inventory Schedule`"></v-checkbox>
+                            <v-checkbox color="black" v-model="pos_integration.schedule_price_sync" :label="`Auto Price Schedule`"></v-checkbox>
                             <v-text-field v-model="pos_integration.shopify_api_key" label="Shopify API KEY" ></v-text-field>
                             <v-text-field v-model="pos_integration.shopify_api_password" label="Shopify API Password" ></v-text-field>
                             <v-text-field v-model="pos_integration.shopify_api_access_token" label="Shopify Access Token" ></v-text-field>

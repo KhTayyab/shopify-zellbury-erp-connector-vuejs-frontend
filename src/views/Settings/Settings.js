@@ -338,7 +338,7 @@ export default {
 		// Test Connection
 		testIntegration(item) {
 			this.selected_item = Object.assign({}, item)
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			this.$Axios.get(this.$backendURL + "/erp_integration/test_connection?shop=" + this.$shop + "&id=" + this.selected_item.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -433,7 +433,7 @@ export default {
 
 		// pos Integration Data
 		getPOSIntegration() {
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			this.$Axios.get(this.$backendURL + "/erp_integration/integrations?shop=" + this.$shop, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -473,7 +473,7 @@ export default {
 
 		// Save & Update pos/Account
 		savepos() {
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			if (this.pos_integration.id == null) {
 				this.$Axios.post(this.$backendURL + "/erp_integration/integrations?shop=" + this.$shop, {
 					shop: this.$shop,
@@ -733,7 +733,7 @@ export default {
     // Inventory Sync
 		inventorySync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			this.$Axios.get(this.$backendURL + "/erp_integration/inv_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -757,7 +757,7 @@ export default {
 		// Price Sync
 		priceSync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			this.$Axios.get(this.$backendURL + "/erp_integration/price_only_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -781,7 +781,7 @@ export default {
 		// Compare at Price Sync
 		compareAtPriceSync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			this.$Axios.get(this.$backendURL + "/erp_integration/compare_price_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -805,7 +805,7 @@ export default {
 		// Combine Sync (Price and Compare at Price)
 		combinePriceSync(item) {
 			this.delete_pos_integration = Object.assign({}, item)
-			this.pos_integration_loading = true;
+			this.pos_integration_loading = "black";
 			this.$Axios.get(this.$backendURL + "/erp_integration/combine_price_sync?shop=" + this.$shop + "&id=" + this.delete_pos_integration.id, {
 				headers: {
 					'Authorization': this.$API_TOKEN.replace('%20', ' ')
