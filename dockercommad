@@ -1,7 +1,7 @@
 
 
 ########## Alche ECW AWS ##########
-git add --all && git commit -m 'color scheme' && git push origin master
+git add --all && git commit -m 'deployment' && git push origin master
 yarn build
 docker build -t shopify-zellbury-erp-connector-frontend .
 docker tag shopify-zellbury-erp-connector-frontend:latest 599938016587.dkr.ecr.us-east-1.amazonaws.com/shopify-zellbury-erp-connector-frontend:latest
