@@ -58,6 +58,9 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="order_logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:loading>
+                    <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+                </template>
                 <template v-slot:item.created_at="{ item }">
                     <span>{{new Date(item.created_at).toLocaleString()}}</span>
                 </template>
@@ -72,7 +75,7 @@
                                 <v-icon>mdi-dots-vertical</v-icon>
                             </v-btn>
                         </template>
-                        <v-list v-if="item.status == 'Failed'">
+                        <v-list v-if="item.status == 'failed'">
                             <v-list-item @click="repostItem(item)">
                                 <v-list-item-title>Re-post Item</v-list-item-title>
                             </v-list-item>

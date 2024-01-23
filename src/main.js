@@ -19,7 +19,7 @@ window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 // Vue.prototype.$sale_module = true
 // Vue.prototype.$backendURL = "https://dynamics-junction-be.alche.cloud"
 
-Vue.prototype.$API_TOKEN = "Token%204016e14eecdaba4cef6d88b05dec5b2124e7fce5";
+Vue.prototype.$API_TOKEN = "Token%205c4c1df1836da625b12f0a7101b8b540e231fcbe";
 Vue.prototype.$shop = "junaid-jamshed-new-testing.myshopify.com";
 Vue.prototype.$plan_name = "Free";
 Vue.prototype.$sale_module = true;

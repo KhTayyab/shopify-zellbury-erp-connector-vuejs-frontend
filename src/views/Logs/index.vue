@@ -59,6 +59,9 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:loading>
+                    <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+                </template>
                 <template v-slot:item.created_at="{ item }">
                     <span>{{new Date(item.created_at).toLocaleString()}}</span>
                 </template>

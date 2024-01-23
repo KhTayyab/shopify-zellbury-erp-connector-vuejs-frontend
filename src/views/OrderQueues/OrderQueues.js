@@ -85,7 +85,7 @@ export default {
     
     // Get Colors
     getColor (status) {
-      if (status == "Success") return 'teal'
+      if (status == "success") return 'teal'
       else if (status == "pending") return 'cyan'
       else if (status == "InProcess") return 'blue-grey'
       else return 'orange'

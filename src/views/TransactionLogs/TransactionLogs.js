@@ -22,8 +22,8 @@ export default {
         { text: 'Status', value: 'status', show: true },
         { text: 'Description', value: 'description', show: true },
         { text: 'Download Link', value: 'link', show: true },
-        { text: 'No of Items', value: 'sku_sync_count', show: true },
-        { text: 'Charges', value: 'calculated_amount', show: true },
+        { text: 'Total Items', value: 'total_count', show: true },
+        { text: 'No of Items Sync', value: 'sku_sync_count', show: true },
         { text: 'Datetime', value: 'created_at', show: true, dataType: "Date"}
       ],
       headers: [
@@ -31,8 +31,8 @@ export default {
         { text: 'Status', value: 'status' },
         { text: 'Description', value: 'description' },
         { text: 'Download Link', value: 'link' },
-        { text: 'No of Items', value: 'sku_sync_count' },
-        { text: 'Charges', value: 'calculated_amount' },
+        { text: 'Total Items', value: 'total_count' },
+        { text: 'No of Items Sync', value: 'sku_sync_count' },
         { text: 'Datetime', value: 'created_at' }
       ],
       menu1: false,

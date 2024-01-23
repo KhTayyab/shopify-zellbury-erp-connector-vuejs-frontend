@@ -16,19 +16,6 @@
                     <v-btn small v-on:click="getlogs" color="black" outlined>
                         <v-icon>mdi-refresh</v-icon> Refresh list
                     </v-btn>
-                    <!-- <div class="bulk-actions">
-                        <v-menu offset-y>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn small color="black" depressed v-bind="attrs" v-on="on">Download <v-icon>mdi-menu-down</v-icon>
-                                </v-btn>
-                            </template>
-                            <v-list>
-                                <v-list-item>
-                                    <v-list-item-title @click="downloadLogs()">Download CSV</v-list-item-title>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </div> -->
                 </div>
             </div>
             <div class="table-filters-row" v-if="showFilters">
@@ -58,6 +45,9 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:loading>
+                    <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+                </template>
                 <template v-slot:item.status="{ item }">
                     <v-chip :color="getColor(item.status)" label v-if="item.status"><span v-if="item.status">Success</span><span v-else>Failed</span></v-chip>
                     <span v-else>-</span>

@@ -85,7 +85,6 @@
                                 <v-card-text class="text--black">
                                     <div class="teal--text"><b>API KEY:</b> {{api_token.custom_api_token}}</div>
                                     <div class="red--text"><b>Note:</b> If token re-generated and update token on integration side</div>
-                                    <div class="indigo--text"><b>Note:</b> If Call Status in Response is 1 then Order marked as Verified</div>
                                 </v-card-text>
                                 <v-card-text class="text--black">
                                     <div class="teal--text"><b>End Point:</b> {{api_details.url}}</div>

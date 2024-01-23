@@ -58,6 +58,9 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:loading>
+                    <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+                </template>
                 <template v-slot:item.status="{ item }">
                     <v-chip :color="getColor(item.status)" label v-if="item.status"><span v-if="item.status">Success</span><span v-else>Failed</span></v-chip>
                     <span v-else>-</span>
