@@ -20,6 +20,7 @@ export default {
       columns: [
         { text: 'Request Type', value: 'request_type', show: true },
         { text: 'Order', value: 'order_number', show: true },
+        { text: 'Order ID', value: 'shopify_order_id', show: true },
         { text: 'Customer name', value: 'customer_name', show: true },
         { text: 'Phone', value: 'number', show: true },
         { text: 'Datetime', value: 'created_at', show: true, dataType: "Date"},
@@ -29,6 +30,7 @@ export default {
       headers: [
         { text: 'Request Type', value: 'request_type'},
         { text: 'Order', value: 'order_number' },
+        { text: 'Order ID', value: 'shopify_order_id'},
         { text: 'Customer name', value: 'customer_name' },
         { text: 'Phone', value: 'number' },
         { text: 'Datetime', value: 'created_at' },

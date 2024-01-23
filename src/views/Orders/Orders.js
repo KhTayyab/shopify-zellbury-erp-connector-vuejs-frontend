@@ -40,8 +40,7 @@ export default {
         { text: 'Consignment', value: 'cn', show: true },
         { text: 'City', value: 'city', show: true },
         { text: 'Payment', value: 'payment_status', show: true },
-        { text: 'Amount', value: 'amount', show: true },
-        { text: '', value: 'actions', sortable: false, width: '68px', show: true }
+        { text: 'Amount', value: 'amount', show: true }
       ],
       headers: [
         { text: 'Order', value: 'id' },
@@ -52,8 +51,7 @@ export default {
         { text: 'Consignment', value: 'cn' },
         { text: 'City', value: 'city' },
         { text: 'Payment', value: 'payment_status' },
-        { text: 'Amount', value: 'amount' },
-        { text: '', value: 'actions', sortable: false, width: '68px' }
+        { text: 'Amount', value: 'amount' }
       ],
       payment_status_list: [
         {
