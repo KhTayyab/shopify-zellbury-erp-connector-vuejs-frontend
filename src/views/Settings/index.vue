@@ -128,7 +128,7 @@
                         </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- CN Generation -->
-                    <v-expansion-panel>
+                    <!-- <v-expansion-panel>
                         <v-expansion-panel-header>CN Generation (if order posting event is on order creation than it will work)</v-expansion-panel-header>
                         <v-progress-linear :active="fulfillment_creation_loading" color="black accent-4" indeterminate rounded></v-progress-linear>
                         <v-expansion-panel-content v-if="fulfillment_creation_loading == false">
@@ -148,7 +148,7 @@
                                 </div>
                             </v-form>
                         </v-expansion-panel-content>
-                    </v-expansion-panel>
+                    </v-expansion-panel> -->
                     <!-- Order Cancellation -->
                     <v-expansion-panel>
                         <v-expansion-panel-header>Order Cancellation</v-expansion-panel-header>
