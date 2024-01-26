@@ -57,7 +57,7 @@
                                                 <v-select class="custom-table-form" v-model="item.shopify_location" :items="locations" :item-text="'name'" :item-value="'id'" label="Shopify Location"></v-select>
                                             </td>
                                             <td class="text-center">
-                                                <v-text-field type="number" min=0 max=1000 class="custom-table-form" v-model="item.inv_percentage" label="Inventory Threshold Percentage"></v-text-field>
+                                                <v-text-field type="number" min=0 max=100 class="custom-table-form" v-model="item.inv_percentage" label="Inventory Threshold Percentage"></v-text-field>
                                             </td>
                                             <td class="text-center">
                                                 <v-checkbox color="black" class="custom-table-form" v-model="item.is_active" label="Status"></v-checkbox>
