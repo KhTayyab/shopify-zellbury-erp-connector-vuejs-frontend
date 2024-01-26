@@ -26,6 +26,7 @@ export default {
         { text: 'Datetime', value: 'created_at', show: true, dataType: "Date"},
         { text: 'Response Code', value: 'response_code', show: true, width: '150px' },
         { text: 'Response Message', value: 'response_message', show: true, width: '300px'},
+        { text: 'Request Body', value: 'request_body', show: true, width: '300px'},
       ],
       headers: [
         { text: 'Request Type', value: 'request_type'},
@@ -36,6 +37,7 @@ export default {
         { text: 'Datetime', value: 'created_at' },
         { text: 'Response Code', value: 'response_code', width: '150px' },
         { text: 'Response Message', value: 'response_message', width: '300px' },
+        { text: 'Request Body', value: 'request_body', width: '300px'},
       ],
       menu1: false,
       menu2: false,

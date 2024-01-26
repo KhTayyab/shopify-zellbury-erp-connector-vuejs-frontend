@@ -19,8 +19,8 @@ Vue.prototype.$plan_name = "Free"
 Vue.prototype.$sale_module = true
 Vue.prototype.$backendURL = "https://zellbury-backend.alche.cloud"
 
-// Vue.prototype.$API_TOKEN = "Token%205c4c1df1836da625b12f0a7101b8b540e231fcbe";
-// Vue.prototype.$shop = "junaid-jamshed-new-testing.myshopify.com";
+// Vue.prototype.$API_TOKEN = "Token%20bc6a0b8558346f815f8cf915ca593d78548656ae";
+// Vue.prototype.$shop = "eb8588-2.myshopify.com";
 // Vue.prototype.$plan_name = "Free";
 // Vue.prototype.$sale_module = true;
 // Vue.prototype.$backendURL = "http://localhost:8000"
