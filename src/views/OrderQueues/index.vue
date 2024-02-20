@@ -75,7 +75,7 @@
                                 <v-icon>mdi-dots-vertical</v-icon>
                             </v-btn>
                         </template>
-                        <v-list v-if="item.status == 'failed'">
+                        <v-list v-if="item.status == 'failed' || item.status == 'InProcess'">
                             <v-list-item @click="repostItem(item)">
                                 <v-list-item-title>Re-post Item</v-list-item-title>
                             </v-list-item>

@@ -19,7 +19,7 @@ Vue.prototype.$plan_name = "Free"
 Vue.prototype.$sale_module = true
 Vue.prototype.$backendURL = "https://zellbury-backend.alche.cloud"
 
-// Vue.prototype.$API_TOKEN = "Token%20bc6a0b8558346f815f8cf915ca593d78548656ae";
+// Vue.prototype.$API_TOKEN = "Token%20f5a0d2aaf674e902525a5669b9aab3a319d106c7";
 // Vue.prototype.$shop = "eb8588-2.myshopify.com";
 // Vue.prototype.$plan_name = "Free";
 // Vue.prototype.$sale_module = true;
