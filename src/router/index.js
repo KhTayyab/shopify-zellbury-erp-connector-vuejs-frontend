@@ -39,6 +39,10 @@ const routes = [
     path: '/price-sync',
     name: 'PriceSync',
     component: () => import('../views/PriceSync/index.vue')
+  },{
+    path: '/fulfillment-events',
+    name: 'FulfillmentEvents',
+    component: () => import('../views/FulfillmentEvents/index.vue')
   }, {
     path: '/settings',
     name: 'Settings',

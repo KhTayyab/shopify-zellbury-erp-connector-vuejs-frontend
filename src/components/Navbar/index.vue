@@ -20,6 +20,9 @@
         <router-link to="/transaction-logs" exact-active-class="active">Transaction Logs</router-link>
       </li>
       <li>
+        <router-link to="/fulfillment-events" exact-active-class="active">FulfillmentEvents</router-link>
+      </li>
+      <li>
         <router-link to="/settings" exact-active-class="active">Setting</router-link>
       </li>
     </ul>
