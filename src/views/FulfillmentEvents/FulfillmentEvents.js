@@ -390,7 +390,7 @@ export default {
 				this.$Axios.post(this.$backendURL + "/fulfillment_events/exclusion_events?shop=" + this.$shop, {
 					shop: this.$shop,
 					event_name: this.exclusion_event.event_name,
-					three_pl: this.exclusion_event.three_pl,
+					three_pl: this.exclusion_event.name_3pl,
 					
 				}, {
 					headers: {
@@ -414,7 +414,7 @@ export default {
 					id: this.exclusion_event.id,
 					shop: this.$shop,
 					event_name: this.exclusion_event.event_name,
-					three_pl: this.exclusion_event.three_pl,
+					three_pl: this.exclusion_event.name_3pl,
 				}, {
 					headers: {
 						'Authorization': this.$API_TOKEN.replace('%20', ' ')
@@ -439,7 +439,7 @@ export default {
 			if (this.mapping_event.id == null) {
 				this.$Axios.post(this.$backendURL + "/fulfillment_events/mapping_events?shop=" + this.$shop, {
 					shop: this.$shop,
-					three_pl: this.mapping_event.three_pl,
+					three_pl: this.mapping_event.name_3pl,
 					three_pl_event: this.mapping_event.three_pl_event,
 					shopify_event: this.mapping_event.shopify_event,
 				}, {
@@ -463,7 +463,7 @@ export default {
 				this.$Axios.put(this.$backendURL + "/fulfillment_events/mapping_events?shop=" + this.$shop + "&id=" + this.mapping_event.id, {
 					id: this.mapping_event.id,
 					shop: this.$shop,
-					three_pl: this.mapping_event.three_pl,
+					three_pl: this.mapping_event.name_3pl,
 					three_pl_event: this.mapping_event.three_pl_event,
 					shopify_event: this.mapping_event.shopify_event,
 				}, {
