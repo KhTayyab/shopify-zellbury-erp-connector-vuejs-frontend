@@ -43,6 +43,10 @@ const routes = [
     path: '/fulfillment-events',
     name: 'FulfillmentEvents',
     component: () => import('../views/FulfillmentEvents/index.vue')
+  },{
+    path: '/events-logs',
+    name: 'FulfillmentEventsLogs',
+    component: () => import('../views/FulfillmentEventsLogs/index.vue')
   }, {
     path: '/settings',
     name: 'Settings',
