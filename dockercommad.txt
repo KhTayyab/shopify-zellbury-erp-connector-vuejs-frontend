@@ -1,8 +1,16 @@
 
 
 ########## Alche ECW AWS ##########
-git add --all && git commit -m 'inventory treshold from percentage to flat value' && git push origin master
+git add --all && git commit -m 'zellbury deployment settings' && git push origin master
 yarn build
+
+
+aws ecr get-login-password --region us-east-1 --profile zellbury | docker login --username AWS --password-stdin 323886902110.dkr.ecr.us-east-1.amazonaws.com
+docker build -t zellbury-frontend .
+docker tag zellbury-frontend:latest 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
+docker push 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
+
+
 docker build -t shopify-zellbury-erp-connector-frontend .
 docker tag shopify-zellbury-erp-connector-frontend:latest 599938016587.dkr.ecr.us-east-1.amazonaws.com/shopify-zellbury-erp-connector-frontend:latest
 aws ecr get-login-password --region us-east-1 --profile alche_ecw | docker login --username AWS --password-stdin 599938016587.dkr.ecr.us-east-1.amazonaws.com
