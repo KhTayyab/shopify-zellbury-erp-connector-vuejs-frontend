@@ -17,8 +17,13 @@ Vue.prototype.$API_TOKEN = url_params.API_TOKEN;
 Vue.prototype.$shop = url_params.shop;
 Vue.prototype.$plan_name = "Free"
 Vue.prototype.$sale_module = true
-// Vue.prototype.$backendURL = "https://zellbury-backend.alche.cloud"
 Vue.prototype.$backendURL = "https://erp-backend.zellbury.com"
+
+// Vue.prototype.$API_TOKEN = url_params.API_TOKEN;
+// Vue.prototype.$shop = url_params.shop;
+// Vue.prototype.$plan_name = "Free"
+// Vue.prototype.$sale_module = true
+// Vue.prototype.$backendURL = "https://zellbury-backend.alche.cloud"
 
 // Vue.prototype.$API_TOKEN = "Token%200398e5e0eed3688dd5619fb9f9bfe32244dc1e16";
 // Vue.prototype.$shop = "alche-app-development.myshopify.com";
