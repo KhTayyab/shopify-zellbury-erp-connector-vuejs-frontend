@@ -6,7 +6,7 @@ export default {
 	},
 	data() {
 		return {
-			webhook: 'https://zellbury-backend.alche.cloud/fulfillment_events/event_webhook',
+			webhook: 'https://erp-backend.zellbury.com/fulfillment_events/event_webhook',
 			three_pl_list: [],
 			three_pl_names_list: [],
 			three_pl: {},

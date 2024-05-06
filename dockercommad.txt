@@ -1,7 +1,7 @@
 
 
 ########## Alche ECW AWS ##########
-git add --all && git commit -m 'zellbury deployment settings' && git push origin master
+git add --all && git commit -m 'fulfillment event URL updated' && git push origin master
 yarn build
 
 aws ecr get-login-password --region us-east-1 --profile zellbury | docker login --username AWS --password-stdin 323886902110.dkr.ecr.us-east-1.amazonaws.com
