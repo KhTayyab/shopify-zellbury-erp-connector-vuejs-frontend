@@ -11,6 +11,13 @@ export default {
   },
   data () {
     return {
+      order_queue_loading: false,
+      order_queue: {
+        webhook: '',
+				order_id: '',
+      },
+      queue_list: ['creation', 'cancellation'],
+      order_queue_dialog: false,
       search: '',
       provider_filter: null,
       showFilters: false,
@@ -34,6 +41,10 @@ export default {
         { text: 'Datetime', value: 'created_at' },
         { text: '', value: 'actions', sortable: false, width: '68px' }
       ],
+      defaultItem: {
+				webhook: '',
+				order_id: '',
+			},
       menu1: false,
       menu2: false,
       start_date: format(parseISO(new Date().toISOString()), 'yyyy-MM-dd'),
@@ -63,7 +74,15 @@ export default {
     initialize() {
       this.getlogs()
     },
-    
+
+		openOrderQueueDialog () {
+      this.order_queue_dialog = true
+    },
+
+    closeOrderQueueDialog () {
+      this.order_queue_dialog = false
+    },
+
     // Get Logs
     getlogs() {
       this.loading_data = 'black';
@@ -153,5 +172,33 @@ export default {
         }
       });
     },
+
+
+    // Add data in order Quque
+		savepos() {
+			this.loading_data = "black";
+			this.$Axios.post(this.$backendURL + "/erp_integration/order_queue?shop=" + this.$shop, {
+        shop: this.$shop,
+        webhook: this.order_queue.webhook,
+        order_id: this.order_queue.order_id,
+      }, {
+        headers: {
+          'Authorization': this.$API_TOKEN.replace('%20', ' ')
+        }
+      }).then((response) => {
+        console.log(response);
+        this.loading_data = false;
+        this.snackbar = true;
+        this.snackbar_text = "Data Added";
+        this.close()
+        this.getlogs()
+      }, (error) => {
+        console.log(error);
+        this.loading_data = false;
+        this.snackbar = true;
+        this.snackbar_text = error;
+      });
+		},
+
   }
 }

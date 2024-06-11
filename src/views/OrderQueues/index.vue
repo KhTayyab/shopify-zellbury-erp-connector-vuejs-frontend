@@ -29,6 +29,7 @@
                             </v-list>
                         </v-menu>
                     </div>
+                    <v-btn small color="black" v-on:click="openOrderQueueDialog" depressed v-bind="attrs" v-on="on">+ Add Data</v-btn>
                 </div>
             </div>
             <div class="table-filters-row" v-if="showFilters">
@@ -57,6 +58,25 @@
                     </template>
                 </v-menu>
             </div>
+            <!-- Order Queue Dialog -->
+            <v-dialog v-model="order_queue_dialog" max-width="600px">
+                <v-card>
+                    <v-card-title>Order Queue</v-card-title>
+                    <v-card-text v-if="order_queue_loading == true">
+                        <v-progress-circular indeterminate color="black" style="margin-left: 44%;"></v-progress-circular>
+                    </v-card-text>
+                    <div v-if="order_queue_loading == false">
+                        <v-card-text>
+                            <v-select :items="queue_list" v-model="order_queue.webhook" label="Webhook" dense></v-select>
+                            <v-text-field v-model="order_queue.order_id" label="Order ID" ></v-text-field>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-btn small depressed class="mr-2" @click="closeOrderQueueDialog()">Cancel</v-btn>
+                            <v-btn small color="black" depressed @click="saveOrderQueue()">Save</v-btn>
+                        </v-card-actions>
+                    </div>
+                </v-card>
+            </v-dialog>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="order_logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
                 <template v-slot:loading>
                     <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
