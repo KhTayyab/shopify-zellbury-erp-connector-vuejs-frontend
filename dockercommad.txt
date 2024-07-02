@@ -8,7 +8,7 @@ aws ecr get-login-password --region us-east-1 --profile zellbury | docker login 
 docker build -t zellbury-frontend .
 docker tag zellbury-frontend:latest 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
 docker push 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
-aws ecs update-service  --service zelbury-frontend --cluster zelbury-cluster --force-new-deployment --region us-east-1 --profile zellbury
+aws ecs update-service  --service zelbury-frontend --cluster zelbury-app-cluster --force-new-deployment --region us-east-1 --profile zellbury
 
 docker run -p 8080:8080 shopify-zellbury-erp-connector-frontend
 

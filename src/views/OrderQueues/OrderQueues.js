@@ -175,7 +175,7 @@ export default {
 
 
     // Add data in order Quque
-		savepos() {
+		saveOrderQueue() {
 			this.loading_data = "black";
 			this.$Axios.post(this.$backendURL + "/erp_integration/order_queue?shop=" + this.$shop, {
         shop: this.$shop,
