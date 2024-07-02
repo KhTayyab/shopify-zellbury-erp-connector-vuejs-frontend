@@ -76,6 +76,10 @@ export default {
     },
 
 		openOrderQueueDialog () {
+      this.order_queue = {
+        webhook: '',
+				order_id: '',
+      }
       this.order_queue_dialog = true
     },
 
@@ -190,7 +194,7 @@ export default {
         this.loading_data = false;
         this.snackbar = true;
         this.snackbar_text = "Data Added";
-        this.close()
+        this.closeOrderQueueDialog()
         this.getlogs()
       }, (error) => {
         console.log(error);
