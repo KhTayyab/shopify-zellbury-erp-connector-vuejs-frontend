@@ -19,6 +19,10 @@ export default {
       queue_list: ['creation', 'cancellation'],
       order_queue_dialog: false,
       search: '',
+      order_id: '',
+      status: '',
+      web_hook: '',
+      status_message: '',
       provider_filter: null,
       showFilters: false,
       loading_data: 'black',
@@ -34,12 +38,12 @@ export default {
         { text: '', value: 'actions', sortable: false, width: '68px', show: true }
       ],
       headers: [
-        { text: 'Order ID', value: 'order_id'},
-        { text: 'Status', value: 'status' },
-        { text: 'Web Wook', value: 'web_hook' },
-        { text: 'Response', value: 'status_message' },
-        { text: 'Datetime', value: 'created_at' },
-        { text: '', value: 'actions', sortable: false, width: '68px' }
+        { text: 'Order ID', value: 'order_id', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'order_id' ].toLowerCase() ) }},
+        { text: 'Status', value: 'status', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'status' ].toLowerCase() ) }},
+        { text: 'Web Wook', value: 'web_hook', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'web_hook' ].toLowerCase() ) }},
+        { text: 'Response', value: 'status_message', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'status_message' ].toLowerCase() ) }},
+        { text: 'Datetime', value: 'created_at'},
+        { text: '', value: 'actions', sortable: false, width: '68px'}
       ],
       defaultItem: {
 				webhook: '',

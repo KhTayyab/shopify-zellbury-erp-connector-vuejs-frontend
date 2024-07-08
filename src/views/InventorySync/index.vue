@@ -58,6 +58,19 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:body.prepend>
+                    <tr>
+                        <td>
+                            <v-text-field v-model="action" type="text" label="Action"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="status" type="text" label="Status"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="description" type="text" label="Description"></v-text-field>
+                        </td>
+                    </tr>
+                </template>
                 <template v-slot:loading>
                     <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
                 </template>

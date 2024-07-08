@@ -78,6 +78,22 @@
                 </v-card>
             </v-dialog>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="order_logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:body.prepend>
+                    <tr>
+                        <td>
+                            <v-text-field v-model="order_id" type="text" label="Order ID"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="status" type="text" label="Status"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="web_hook" type="text" label="Web Wook"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="status_message" type="text" label="Response"></v-text-field>
+                        </td>
+                    </tr>
+                </template>
                 <template v-slot:loading>
                     <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
                 </template>

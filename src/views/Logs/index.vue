@@ -59,6 +59,37 @@
                 </v-menu>
             </div>
             <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                <template v-slot:body.prepend>
+                    <tr>
+                        <td>
+                            <v-text-field v-model="request_type" type="text" label="Request Type"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="order_number" type="text" label="Order"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="shopify_order_id" type="text" label="Order ID"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="customer_name" type="text" label="Customer name"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="number" type="text" label="Phone"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="created_at" type="text" label="Datetime"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="response_code" type="text" label="Response Code"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="response_message" type="text" label="Response Message"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="request_body" type="text" label="Request Body"></v-text-field>
+                        </td>
+                    </tr>
+                </template>
                 <template v-slot:loading>
                     <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
                 </template>

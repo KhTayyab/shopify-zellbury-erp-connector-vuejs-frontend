@@ -12,6 +12,11 @@ export default {
   data () {
     return {
       search: '',
+      action: '',
+      status: '',
+      description: '',
+      total_count: '',
+      sku_sync_count: '',
       showFilters: false,
       loading_data: 'black',
       logs: [],
@@ -27,13 +32,13 @@ export default {
         { text: 'Datetime', value: 'created_at', show: true, dataType: "Date"}
       ],
       headers: [
-        { text: 'Action', value: 'action'},
-        { text: 'Status', value: 'status' },
-        { text: 'Description', value: 'description' },
-        { text: 'Download Link', value: 'link' },
-        { text: 'Total Items', value: 'total_count' },
-        { text: 'No of Items Sync', value: 'sku_sync_count' },
-        { text: 'Datetime', value: 'created_at' }
+        { text: 'Action', value: 'action', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'action' ].toLowerCase() ) }},
+        { text: 'Status', value: 'status', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'status' ].toLowerCase() ) }},
+        { text: 'Description', value: 'description', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'description' ].toLowerCase() ) }},
+        { text: 'Download Link', value: 'link'},
+        { text: 'Total Items', value: 'total_count', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'total_count' ].toLowerCase() ) }},
+        { text: 'No of Items Sync', value: 'sku_sync_count', filter: f => { return ( f + '' ).toLowerCase().includes( this[ 'sku_sync_count' ].toLowerCase() ) }},
+        { text: 'Datetime', value: 'created_at'}
       ],
       menu1: false,
       menu2: false,

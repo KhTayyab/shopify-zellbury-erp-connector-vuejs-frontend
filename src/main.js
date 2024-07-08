@@ -19,7 +19,7 @@ Vue.prototype.$plan_name = "Free"
 Vue.prototype.$sale_module = true
 Vue.prototype.$backendURL = "https://erp-backend.zellbury.com"
 
-// Vue.prototype.$API_TOKEN = "Token%20b3db23b658dcfe4b35c04e30e0f8b09426ad3138";
+// Vue.prototype.$API_TOKEN = "Token%20da3ec62265d81bcd466c5f8882281e9f077f523c";
 // Vue.prototype.$shop = "alche-app-development.myshopify.com";
 // Vue.prototype.$shop = "eb8588-2.myshopify.com";
 // Vue.prototype.$plan_name = "Free";

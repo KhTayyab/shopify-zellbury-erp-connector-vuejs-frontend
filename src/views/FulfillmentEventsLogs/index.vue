@@ -58,6 +58,34 @@
                     </v-menu>
                 </div>
                 <v-data-table :loading="loading_data" loading-text="Loading... Please wait" :headers="headers" :items="logs" :items-per-page="itemsPerPage" :search="search" v-model="selected" item-key="id" class="elevation-1">
+                    <template v-slot:body.prepend>
+                    <tr>
+                        <td>
+                            <v-text-field v-model="courier" type="text" label="Courier"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="status" type="text" label="Status"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="fulfillment_order_id" type="text" label="Fulfillment ID"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="order_id" type="text" label="Order ID"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="event_status" type="text" label="Fulfillment event status"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="shopify_paid_status" type="text" label="Shopify Paid Status"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="gtech_paid_status" type="text" label="Gtech Paid Status"></v-text-field>
+                        </td>
+                        <td>
+                            <v-text-field v-model="message" type="text" label="Message"></v-text-field>
+                        </td>
+                    </tr>
+                </template>
                     <template v-slot:loading>
                         <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
                     </template>
