@@ -22,9 +22,9 @@
         const custom_variables = getUrlVariables()
         const config = {
             apiKey: custom_variables.SHOPIFY_APP_API_KEY,
-            shopOrigin: custom_variables.shop,
             host: custom_variables.host,
-            forceRedirect: true
+            // shopOrigin: custom_variables.shop,
+            // forceRedirect: true
         };
         const app = AppBridge.createApp(config);
     </script>

@@ -33,3 +33,11 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
+
+if (url_params.API_TOKEN.includes("+") == true) {
+  var queryString = window.location.search
+  var urlParams = new URLSearchParams(queryString);
+  Vue.prototype.$API_TOKEN = urlParams.get('API_TOKEN');
+  router.push('/settings')
+}

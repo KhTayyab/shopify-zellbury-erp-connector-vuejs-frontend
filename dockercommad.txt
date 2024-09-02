@@ -1,12 +1,16 @@
+##############################################################################################################
+##############################################################################################################
+############################################### Alche ECW AWS ################################################
+##############################################################################################################
+##############################################################################################################
 
-
-########## Alche ECW AWS ##########
-git add --all && git commit -m 'smart search added' && git push origin master
 yarn build
 
-aws ecr get-login-password --region us-east-1 --profile zellbury | docker login --username AWS --password-stdin 323886902110.dkr.ecr.us-east-1.amazonaws.com
+git add --all && git commit -m 'unified domain working..' && git push origin unified-domain
 docker build -t zellbury-frontend .
 docker tag zellbury-frontend:latest 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
+
+aws ecr get-login-password --region us-east-1 --profile zellbury | docker login --username AWS --password-stdin 323886902110.dkr.ecr.us-east-1.amazonaws.com
 docker push 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
 aws ecs update-service  --service zelbury-frontend --cluster zelbury-app-cluster --force-new-deployment --region us-east-1 --profile zellbury
 
