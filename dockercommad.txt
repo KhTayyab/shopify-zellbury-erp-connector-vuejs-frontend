@@ -6,7 +6,7 @@
 
 yarn build
 
-git add --all && git commit -m 'unified domain working..' && git push origin unified-domain
+git add --all && git commit -m 'unified domain working..' && git push origin master
 docker build -t zellbury-frontend .
 docker tag zellbury-frontend:latest 323886902110.dkr.ecr.us-east-1.amazonaws.com/zellbury-frontend:latest
 
